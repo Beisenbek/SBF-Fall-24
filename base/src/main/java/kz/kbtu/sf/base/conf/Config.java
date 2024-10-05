@@ -14,6 +14,6 @@ public class Config {
     @Bean
     GreetingService getGreetingService() {
         log.info("i'm here!");
-        return new GreetingService(color);
+        return new GreetingService();
     }
 }
