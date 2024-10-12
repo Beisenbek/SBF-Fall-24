@@ -1,13 +1,17 @@
 package kz.kbtu.sf.base.model;
 
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.Setter;
 
 import java.time.LocalDate;
 
 @Entity
 @Table(name = "employees")
 @Getter
+@Setter
+@AllArgsConstructor
 public class Employee {
 
     @Id
@@ -21,11 +25,6 @@ public class Employee {
     private LocalDate dateOfBirth;
 
 
-    public Employee(String firstName, String lastName, LocalDate dateOfBirth) {
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.dateOfBirth = dateOfBirth;
-    }
 
     public Employee() {
 
