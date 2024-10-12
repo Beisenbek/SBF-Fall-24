@@ -6,15 +6,18 @@ import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import io.swagger.v3.oas.annotations.tags.Tag;
+import kz.kbtu.sf.base.dto.EmployeeDTO;
 import kz.kbtu.sf.base.model.Employee;
 import kz.kbtu.sf.base.service.EmployeeService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-public class EmployeeController {
+public class AdminEmployeeController {
 
     private final EmployeeService employeeService;
 
@@ -28,8 +31,15 @@ public class EmployeeController {
                     description = "No employee found",
                     content = @Content) })
     @Tag(description = "EmployeeController", name = "My Employee")
-    @GetMapping("/user/employees")
+    @GetMapping("/admin/employees")
     public Iterable<Employee> findAllEmployees() {
         return this.employeeService.findAll();
+    }
+
+
+    @Tag(description = "EmployeeController", name = "My Employee")
+    @PostMapping("/admin/employees")
+    public Employee addOneEmployee(@RequestBody EmployeeDTO employee) {
+        return this.employeeService.save(employee);
     }
 }
